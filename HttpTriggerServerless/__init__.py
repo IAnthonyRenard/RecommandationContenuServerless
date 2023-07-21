@@ -20,7 +20,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         response_data = {'userID': name,'recommendations': recommendations[:5]}
         response_body = json.dumps(response_data)
         
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully. Response is : {response_body}")
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
