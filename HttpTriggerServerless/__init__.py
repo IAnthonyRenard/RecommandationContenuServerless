@@ -2,7 +2,7 @@ import logging
 import json
 import azure.functions as func
 from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
-from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
+#from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 import pandas as pd
 from io import StringIO
 
@@ -10,17 +10,17 @@ sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
 df = pd.read_csv(StringIO(blob_data.content_as_text()))
-print(df)
+display(df.head())
 
-'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
-container_client = ContainerClient.from_container_url(sas_url)
-output = io.StringIO()
-head = ["col1" , "col2" , "col3"]
-l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
-df = pd.DataFrame(l , columns = head)
-print(df)
-output = df.to_csv(index_label="idx", encoding = "utf-8")
-blob_client = container_client.upload_blob(name="myblob", data=output)'''
+#sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
+#container_client = ContainerClient.from_container_url(sas_url)
+#output = io.StringIO()
+#head = ["col1" , "col2" , "col3"]
+#l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
+#df = pd.DataFrame(l , columns = head)
+#print(df)
+#output = df.to_csv(index_label="idx", encoding = "utf-8")
+#blob_client = container_client.upload_blob(name="myblob", data=output)
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
