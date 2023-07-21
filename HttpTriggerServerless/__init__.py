@@ -17,9 +17,9 @@ container_client = ContainerClient.from_container_url(sas_url)
 output = io.StringIO()
 head = ["col1" , "col2" , "col3"]
 l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
-df = pd.DataFrame (l , columns = head)
+df = pd.DataFrame(l , columns = head)
 print(df)
-output = df.to_csv (index_label="idx", encoding = "utf-8")
+output = df.to_csv(index_label="idx", encoding = "utf-8")
 blob_client = container_client.upload_blob(name="myblob", data=output)
 
 
