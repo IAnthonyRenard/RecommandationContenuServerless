@@ -6,10 +6,15 @@ from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans
 import pandas as pd
 from io import StringIO
 
+print("step 0")
 sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+print("step 1")
 blob_client = BlobClient.from_blob_url(sas_url)
+print("step 2")
 blob_data = blob_client.download_blob()
+print("step 3")
 df = pd.read_csv(StringIO(blob_data.content_as_text()))
+print("step 4")
 df.head(10)
 
 #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
