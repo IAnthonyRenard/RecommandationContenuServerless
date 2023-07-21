@@ -39,9 +39,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         blob_client = BlobClient.from_blob_url(sas_url)
         print("step 2")
         blob_data = blob_client.download_blob()
-        '''print("step 3")
+        print("step 3")
         df = pd.read_csv(StringIO(blob_data.content_as_text()))
-        print("step 4")
+        '''print("step 4")
         df.head(10)'''
         
         
