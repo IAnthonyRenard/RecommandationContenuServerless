@@ -10,7 +10,7 @@ sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
 df = pd.read_csv(StringIO(blob_data.content_as_text()))
-df.head()
+df.head(10)
 
 #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
 #container_client = ContainerClient.from_container_url(sas_url)
