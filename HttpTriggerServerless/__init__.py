@@ -34,7 +34,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if name:
         #chargement du fichier d'interactions
         print("step 0")
-        sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+        #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+        sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
         print("step 1")
         blob_client = BlobClient.from_blob_url(sas_url)
         print("step 2")
