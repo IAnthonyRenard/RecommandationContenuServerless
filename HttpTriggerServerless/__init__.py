@@ -17,7 +17,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if name:
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
-        response_data = {'user_id': id,'recommendations': recommended_articles[:5]}
+        response_data = {'user_id': id,'recommendations': recommendations[:5]}
         response_body = json.dumps(response_data)
         
         return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
