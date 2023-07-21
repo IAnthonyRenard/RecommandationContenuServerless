@@ -28,7 +28,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         )
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+'''def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
     # Récupérer les paramètres de la requête
     id = req.params.get('id')
@@ -48,4 +48,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         response_body,
         mimetype='application/json',
         status_code=200
-    )                                                                 
+    )'''                                                                 
