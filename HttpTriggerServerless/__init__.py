@@ -13,7 +13,7 @@ df = pd.read_csv(StringIO(blob_data.content_as_text()))
 print(df)
 
 sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
-container = ContainerClient.from_container_url(sas_url)
+container_client = ContainerClient.from_container_url(sas_url)
 output = io.StringIO()
 head = ["col1" , "col2" , "col3"]
 l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
