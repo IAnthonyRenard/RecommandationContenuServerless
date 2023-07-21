@@ -4,3 +4,6 @@
 
 #azure-functions
 azure-functions==1.15.0
+azure-storage-blob==12.17.0
+pandas
+io
