@@ -38,7 +38,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if name:
         #chargement du fichier d'interactions
         
-        
+        print("lancement recoms")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
         response_data = {'userID': name,'recommendations': recommendations[:5]}
         response_body = json.dumps(response_data)
