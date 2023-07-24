@@ -20,7 +20,7 @@ df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
-df_clicks = pd.read_csv(blob_data.content_as_text(),chunksize=10 ** 6)
+df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #3. chargement du modèle
 '''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
