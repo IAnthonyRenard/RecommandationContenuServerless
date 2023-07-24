@@ -19,10 +19,10 @@ from implicit.bpr import BayesianPersonalizedRanking
 #df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #2. chargement du fichier interactions
-sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv"
-blob_client = BlobClient.from_blob_url(sas_url)
-blob_data = blob_client.download_blob()
-df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
+#sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv"
+#blob_client = BlobClient.from_blob_url(sas_url)
+#blob_data = blob_client.download_blob()
+#df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #3. chargement du modèle
 '''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
@@ -67,12 +67,12 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
                 
         #recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
         
-        print("Lancement de recherche des recommandations")
+        '''print("Lancement de recherche des recommandations")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
         response_data = {'userID': name,'recommendations': recommendations[:5]}
-        response_body = json.dumps(response_data)
+        response_body = json.dumps(response_data)'''
         
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully. Response is : {response_body}")
+        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully")#. Response is : {response_body}")
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
