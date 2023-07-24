@@ -13,10 +13,10 @@ from implicit.bpr import BayesianPersonalizedRanking
 ''' *******Chargement des fichiers********'''
 
 #1. chargement du fichier embedding
-sas_url= "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
-blob_client = BlobClient.from_blob_url(sas_url)
-blob_data = blob_client.download_blob()
-df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
+#sas_url= "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
+#blob_client = BlobClient.from_blob_url(sas_url)
+#blob_data = blob_client.download_blob()
+#df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #2. chargement du fichier interactions
 #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv"
@@ -50,7 +50,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('userID')
-    
     if not name:
         try:
             req_body = req.get_json()
@@ -60,7 +59,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('userID')
 
     if name:
-        print("La taille de la dataframe embedding est :", df_embeddings.shape)
+        #print("La taille de la dataframe embedding est :", df_embeddings.shape)
         #print("La taille de la dataframe df_clicks est :", df_clicks.shape)
         
         #csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
@@ -78,8 +77,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
              status_code=200
         )
-        
-        
 
 '''def compute_interaction_matrix(clicks):
     # Création de la dataframe d'interaction entre users et articles
