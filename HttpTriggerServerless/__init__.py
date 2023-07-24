@@ -63,7 +63,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe embedding est :", df_embeddings.shape)
         print("La taille de la dataframe df_clicks est :", df_clicks.shape)
         
-        #csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
+        csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
+        
+        print("La taille de la dataframe csr_item_user est :", csr_item_user.shape)
+        print("La taille de la dataframe csr_user_item est :", csr_user_item.shape)
                 
         #recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
         
@@ -83,7 +86,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
 
-'''def compute_interaction_matrix(clicks):
+def compute_interaction_matrix(clicks):
     # Création de la dataframe d'interaction entre users et articles
     interactions = clicks.groupby(['user_id','click_article_id']).size().reset_index(name='count')
     print('Interactions DF shape: ', interactions.shape)
@@ -107,7 +110,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
 
 
-def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True):#
+'''def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True):#
 
    
     # Entrainement du modele sur la sparse matrix de taille (number_items, number_user)
