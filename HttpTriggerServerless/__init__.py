@@ -50,6 +50,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('userID')
+    
     if not name:
         try:
             req_body = req.get_json()
@@ -75,8 +76,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+             status_code=200)
 
 '''def compute_interaction_matrix(clicks):
     # Création de la dataframe d'interaction entre users et articles
