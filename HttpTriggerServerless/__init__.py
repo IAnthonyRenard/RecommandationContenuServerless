@@ -1,20 +1,20 @@
 import logging
 import json
 import azure.functions as func
-import pandas as pd
-'''from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
+
+from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
 from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 import pandas as pd
 from io import StringIO
-import pickle'''
+import pickle
 
 ''' *******Chargement des fichiers********'''
 
 #1. chargement du fichier embedding
-'''sas_url= "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
+sas_url= "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
-df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)'''
+df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #2. chargement du fichier interactions
 '''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
@@ -46,7 +46,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('userID')
-    df_clicks=req.params.get('df_clicks')
+    
     
     
     if not name:
@@ -58,8 +58,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('userID')
 
     if name:
-        #print("La taille de la dataframe embedding est :", df_embeddings.shape)
-        print("La taille de la dataframe intéractions est :", len(df_clicks))
+        print("La taille de la dataframe embedding est :", df_embeddings.shape)
+       
         
         
         print("lancement recoms")
