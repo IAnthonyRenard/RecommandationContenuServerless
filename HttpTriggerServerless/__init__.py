@@ -17,7 +17,7 @@ blob_data = blob_client.download_blob()
 print("step 3")
 df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()))
 print("step 4")
-print("la taille de la dataframe embedding est", df_embeddings.shape())
+print("la taille de la dataframe embedding est :", df_embeddings.shape)
 
 
 
