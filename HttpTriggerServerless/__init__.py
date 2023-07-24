@@ -3,10 +3,10 @@ import json
 import azure.functions as func
 
 from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
-from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
+#from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 import pandas as pd
 from io import StringIO
-import pickle
+#import pickle
 from scipy.sparse import csr_matrix
 from implicit.bpr import BayesianPersonalizedRanking
 
