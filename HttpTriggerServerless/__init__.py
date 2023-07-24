@@ -81,7 +81,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         
         
 
-def compute_interaction_matrix(clicks):
+'''def compute_interaction_matrix(clicks):
     # Création de la dataframe d'interaction entre users et articles
     interactions = clicks.groupby(['user_id','click_article_id']).size().reset_index(name='count')
     print('Interactions DF shape: ', interactions.shape)
@@ -131,4 +131,4 @@ def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n
     
   
     
-    return  json.dumps(recoms)
+    return  json.dumps(recoms)'''
