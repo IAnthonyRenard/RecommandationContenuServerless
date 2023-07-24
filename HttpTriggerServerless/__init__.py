@@ -46,6 +46,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     name = req.params.get('userID')
     df_clicks=req.params.get('df_clicks')
+    df_clicks_test=pd.Dataframe(df_clicks)
     
     if not name:
         try:
@@ -57,7 +58,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if name:
         #print("La taille de la dataframe embedding est :", df_embeddings.shape)
-        print("La taille de la dataframe intéractions est :", {df_clicks})
+        print("La taille de la dataframe intéractions est :", df_clicks_test.shape)
         
         
         print("lancement recoms")
