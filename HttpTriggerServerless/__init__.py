@@ -6,9 +6,9 @@ from azure.storage.blob import BlobClient #Pour charger un fichier disponible da
 import pandas as pd
 from io import StringIO
 #from scipy.sparse import csr_matrix
-from implicit.bpr import BayesianPersonalizedRanking
-'''from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
-import pickle'''
+#from implicit.bpr import BayesianPersonalizedRanking
+#from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
+
 
 ''' *******Chargement des fichiers********'''
 
