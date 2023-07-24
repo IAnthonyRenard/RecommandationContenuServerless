@@ -7,6 +7,19 @@ import pandas as pd
 from io import StringIO
 
 
+#chargement du fichier d'interactions
+print("step 0")
+#sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
+print("step 1")
+blob_client = BlobClient.from_blob_url(sas_url)
+print("step 2")
+blob_data = blob_client.download_blob()
+print("step 3")
+df = pd.read_csv(StringIO(blob_data.content_as_text()))
+print("step 4")
+print("la taille de la dataframe embedding est", len(df))
+
 
 #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
 #container_client = ContainerClient.from_container_url(sas_url)
@@ -32,21 +45,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('userID')
 
     if name:
-        #chargement du fichier d'interactions
-        print("step 0")
-        #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
-        sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
-        print("step 1")
-        blob_client = BlobClient.from_blob_url(sas_url)
-        print("step 2")
-        blob_data = blob_client.download_blob()
-        print("step 3")
-        df = pd.read_csv(StringIO(blob_data.content_as_text()))
-        print("step 4")
-        print("la taille de la dataframe embedding est", len(df))
-        
-        
-        
         print("lancement recoms")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
         response_data = {'userID': name,'recommendations': recommendations[:5]}
