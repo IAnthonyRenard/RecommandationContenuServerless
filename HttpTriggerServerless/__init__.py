@@ -19,10 +19,10 @@ blob_data = blob_client.download_blob()
 df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #2. chargement du fichier interactions
-sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv"
-blob_client = BlobClient.from_blob_url(sas_url)
-blob_data = blob_client.download_blob()
-df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
+#sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv"
+#blob_client = BlobClient.from_blob_url(sas_url)
+#blob_data = blob_client.download_blob()
+#df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #3. chargement du modèle
 '''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
@@ -61,7 +61,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if name:
         print("La taille de la dataframe embedding est :", df_embeddings.shape)
-        print("La taille de la dataframe df_clicks est :", df_clicks.shape)
+        #print("La taille de la dataframe df_clicks est :", df_clicks.shape)
         
         #csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
                 
