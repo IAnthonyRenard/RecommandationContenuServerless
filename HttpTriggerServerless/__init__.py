@@ -68,7 +68,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe csr_item_user est :", csr_item_user.shape)
         print("La taille de la dataframe csr_user_item est :", csr_user_item.shape)
                 
-        recommendations = get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True)
+        recommendations = get_cf_reco(df_clicks, 55555, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True)
                 
         print("Lancement de recherche des recommandations")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
