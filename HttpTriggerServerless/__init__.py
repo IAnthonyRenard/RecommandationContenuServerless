@@ -16,17 +16,21 @@ blob_data = blob_client.download_blob()
 df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
 
 #2. chargement du fichier interactions
-'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
-df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()),chunksize=5)'''
+
+chunksize = 10 ** 6
+for chunk in pd.read_csv(StringIO(blob_data.content_as_text()), chunksize=chunksize):
+    process(chunk)
+#df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()),chunksize=10 ** 6)
 
 #3. chargement du modèle
-sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
+'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
 with open('blob_data', 'rb') as filehandle:
-    model = pickle.load(filehandle)
+    model = pickle.load(filehandle)'''
 
 
 
