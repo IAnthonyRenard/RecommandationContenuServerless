@@ -4,8 +4,9 @@ import azure.functions as func
 
 from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
 import pandas as pd
-'''from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 from io import StringIO
+'''from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
+
 import pickle
 from scipy.sparse import csr_matrix
 from implicit.bpr import BayesianPersonalizedRanking'''
