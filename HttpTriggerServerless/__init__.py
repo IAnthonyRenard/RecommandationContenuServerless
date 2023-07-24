@@ -5,21 +5,29 @@ from azure.storage.blob import BlobClient #Pour charger un fichier disponible da
 from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 import pandas as pd
 from io import StringIO
+import pickle
 
 ''' *******Chargement des fichiers********'''
 
 #1. chargement du fichier embedding
-print("step 0")
 #sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
 sas_url= "https://conteneur3.blob.core.windows.net/conteneur3/df_embeddings_inter.csv"
-print("step 1")
 blob_client = BlobClient.from_blob_url(sas_url)
-print("step 2")
 blob_data = blob_client.download_blob()
-print("step 3")
-df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()))
-print("step 4")
+df_embeddings = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
+'''
+#2. chargement du fichier interactions
+sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2.csv"
+blob_client = BlobClient.from_blob_url(sas_url)
+blob_data = blob_client.download_blob()
+df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()))
 
+#3. chargement du modèle
+sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
+blob_client = BlobClient.from_blob_url(sas_url)
+blob_data = blob_client.download_blob()
+with open('blob_data', 'rb') as filehandle:
+    model = pickle.load(filehandle)'''
 
 
 
