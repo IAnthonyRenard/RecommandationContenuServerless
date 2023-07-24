@@ -59,7 +59,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if name:
         #print("La taille de la dataframe embedding est :", df_embeddings.shape)
-        print("La taille de la dataframe intéractions est :", df_clicks)
+        print("La taille de la dataframe intéractions est :", len(df_clicks))
         
         
         print("lancement recoms")
