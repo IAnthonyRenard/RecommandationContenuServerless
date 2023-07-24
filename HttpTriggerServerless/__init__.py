@@ -68,8 +68,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe csr_item_user est :", csr_item_user.shape)
         print("La taille de la dataframe csr_user_item est :", csr_user_item.shape)
                 
-        #recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
-        
+        recommendations = get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True)
+                
         print("Lancement de recherche des recommandations")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
         response_data = {'userID': name,'recommendations': recommendations[:5]}
@@ -81,9 +81,6 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
              status_code=200
             )
-        
-    
-
 
 
 def compute_interaction_matrix(clicks):
@@ -110,7 +107,7 @@ def compute_interaction_matrix(clicks):
 
 
 
-'''def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True):#
+def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True):
 
    
     # Entrainement du modele sur la sparse matrix de taille (number_items, number_user)
@@ -136,4 +133,4 @@ def compute_interaction_matrix(clicks):
     
   
     
-    return  json.dumps(recoms)'''
+    return  json.dumps(recoms)
