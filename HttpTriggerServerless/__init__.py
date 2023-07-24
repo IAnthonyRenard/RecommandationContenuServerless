@@ -1,6 +1,7 @@
 import logging
 import json
 import azure.functions as func
+import pandas as pd
 '''from azure.storage.blob import BlobClient #Pour charger un fichier disponible dans un container
 from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 import pandas as pd
