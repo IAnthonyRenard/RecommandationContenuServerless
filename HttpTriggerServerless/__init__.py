@@ -44,12 +44,12 @@ with open('blob_data', 'rb') as filehandle:
 #blob_client = container_client.upload_blob(name="myblob", data=output)
 
 
+
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('userID')
-    
-    
     
     if not name:
         try:
@@ -64,9 +64,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe df_clicks est :", df_clicks.shape)
         
         csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
+                
+        #recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
         
-        recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
-    
         print("Lancement de recherche des recommandations")
         recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
         response_data = {'userID': name,'recommendations': recommendations[:5]}
@@ -80,6 +80,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         )
         
         
+
 def compute_interaction_matrix(clicks):
     # Création de la dataframe d'interaction entre users et articles
     interactions = clicks.groupby(['user_id','click_article_id']).size().reset_index(name='count')
@@ -100,6 +101,7 @@ def compute_interaction_matrix(clicks):
     
     
     return csr_item_user, csr_user_item
+
 
 
 
@@ -130,5 +132,3 @@ def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n
   
     
     return  json.dumps(recoms)
-
-                                                                
