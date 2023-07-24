@@ -79,7 +79,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         return func.HttpResponse(f"{recommendations}")
     else:
         return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
+             "Aucun utilisateur n'a été renseigné",
              status_code=200
             )
 
@@ -115,7 +115,7 @@ def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n
     
     if train or model_path is None:
         #model = LogisticMatrixFactorization(factors= 128, random_state=42)
-        model = BayesianPersonalizedRanking(factors=100, regularization=0.01, use_gpu=False, iterations=5, random_state=42)
+        model = BayesianPersonalizedRanking(factors=100, regularization=0.01, use_gpu=False, iterations=5)#, random_state=42)
         print("[INFO] : Début de l'entrainement du modèle")
         model.fit(csr_user_item)
 
