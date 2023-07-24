@@ -115,7 +115,7 @@ def get_cf_reco(clicks, userID, csr_item_user, csr_user_item, model_path=None, n
     
     if train or model_path is None:
         #model = LogisticMatrixFactorization(factors= 128, random_state=42)
-        model = BayesianPersonalizedRanking(factors=100, regularization=0.01, use_gpu=False, iterations=5)#, random_state=42)
+        model = BayesianPersonalizedRanking(factors=100, regularization=0.01, use_gpu=False, iterations=5, random_state=55)
         print("[INFO] : Début de l'entrainement du modèle")
         model.fit(csr_user_item)
 
