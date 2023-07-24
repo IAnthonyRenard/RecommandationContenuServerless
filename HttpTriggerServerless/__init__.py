@@ -63,7 +63,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe embedding est :", df_embeddings.shape)
         print("La taille de la dataframe df_clicks est :", df_clicks.shape)
         
-        csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
+        #csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
                 
         #recommendations=get_cf_reco(df_clicks, name, csr_item_user, csr_user_item, model_path="./recommender.model", n_reco=5, train=False)
         
