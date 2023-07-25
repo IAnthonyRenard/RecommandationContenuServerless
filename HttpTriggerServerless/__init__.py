@@ -7,7 +7,6 @@ import pandas as pd
 from io import StringIO
 from scipy.sparse import csr_matrix
 from implicit.bpr import BayesianPersonalizedRanking
-#from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 
 
 ''' *******Chargement des fichiers********'''
@@ -23,27 +22,6 @@ sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/clicks2_azure.csv
 blob_client = BlobClient.from_blob_url(sas_url)
 blob_data = blob_client.download_blob()
 df_clicks = pd.read_csv(StringIO(blob_data.content_as_text()), index_col=0)
-
-#3. chargement du modèle
-'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3/recommender.model"
-blob_client = BlobClient.from_blob_url(sas_url)
-blob_data = blob_client.download_blob()
-with open('blob_data', 'rb') as filehandle:
-    model = pickle.load(filehandle)'''
-
-
-
-'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
-container_client = ContainerClient.from_container_url(sas_url)
-output = StringIO()
-head = ["col1" , "col2" , "col3"]
-l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
-df = pd.DataFrame(l , columns = head)
-print(df)
-output = df.to_csv(index_label="idx", encoding = "utf-8")
-blob_client = container_client.upload_blob(name="myblob", data=output)'''
-
-
 
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
@@ -62,7 +40,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if name:
         print("La taille de la dataframe embedding est :", df_embeddings.shape)
         print("La taille de la dataframe df_clicks est :", df_clicks.shape)
-        #print("La taille de la dataframe df est :", df.shape)
+        
         
         csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
         
@@ -70,13 +48,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         print("La taille de la dataframe csr_user_item est :", csr_user_item.shape)
                 
         recommendations = get_cf_reco(df_clicks, int(name), csr_item_user, csr_user_item, model_path=None, n_reco=5, train=True)
-                
-        '''print("Lancement de recherche des recommandations")
-        recommendations = ['Article 1', 'Article 2', 'Article 3', 'Article 4', 'Article 5']
-        response_data = {'userID': name,'recommendations': recommendations[:5]}
-        response_body = json.dumps(response_data)'''
-        
-        #return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully. Response is : {response_body}")
+
         return func.HttpResponse(f"{recommendations}")
     else:
         return func.HttpResponse(
