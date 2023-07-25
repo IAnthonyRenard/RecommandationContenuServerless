@@ -7,7 +7,7 @@ import pandas as pd
 from io import StringIO
 from scipy.sparse import csr_matrix
 from implicit.bpr import BayesianPersonalizedRanking
-from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
+#from azure.storage.blob import ContainerClient #Pour enregistrer un fichier dans un container
 
 
 ''' *******Chargement des fichiers********'''
@@ -33,7 +33,7 @@ with open('blob_data', 'rb') as filehandle:
 
 
 
-sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
+'''sas_url = "https://conteneur3.blob.core.windows.net/conteneur3"
 container_client = ContainerClient.from_container_url(sas_url)
 output = StringIO()
 head = ["col1" , "col2" , "col3"]
@@ -41,7 +41,7 @@ l = [[1 , 2 , 3],[4,5,6] , [8 , 7 , 9]]
 df = pd.DataFrame(l , columns = head)
 print(df)
 output = df.to_csv(index_label="idx", encoding = "utf-8")
-blob_client = container_client.upload_blob(name="myblob", data=output)
+blob_client = container_client.upload_blob(name="myblob", data=output)'''
 
 
 
@@ -62,7 +62,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     if name:
         print("La taille de la dataframe embedding est :", df_embeddings.shape)
         print("La taille de la dataframe df_clicks est :", df_clicks.shape)
-        print("La taille de la dataframe df est :", df.shape)
+        #print("La taille de la dataframe df est :", df.shape)
         
         csr_item_user, csr_user_item = compute_interaction_matrix(df_clicks)
         
